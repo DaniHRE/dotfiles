@@ -11,13 +11,13 @@ Special thanks to @abehidek ❤️.
 
 ## Roadmap
 
-- [x] initial config
-- [x] browsers
-- [x] vscodium
-- [ ] dev env
-- [ ] hypr twm rice
-- [ ] rofi rice
-- [ ] display manager rice
-- [ ] refactor dotfiles
-- [ ] widgets and bar rice
+- [x] Initial config
+- [x] Browsers
+- [x] VSCodium
+- [ ] Dev Env
+- [ ] Hypr twm rice
+- [ ] Rofi rice
+- [ ] Display manager rice
+- [ ] Refactor dotfiles
+- [ ] Widgets and bar rice
 
