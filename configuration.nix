@@ -3,6 +3,8 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, ... }:
+
+# SET HOMA-MANAGER REPOSITORY TO INSTAL
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
 in {
@@ -11,7 +13,8 @@ in {
       ./hardware-configuration.nix
       (import "${home-manager}/nixos")
     ];
-    
+  
+  # HOME MANAGER CONFIG
   home-manager.users.dino = {
       /* Here goes your home-manager config, eg home.packages = [ pkgs.foo ]; */
       home.packages = with pkgs; [ cbonsai tree ];
@@ -24,6 +27,10 @@ in {
       };
   };
 
+  # ALLOW SOFTWARE WITH UNFREE LICENSE
+  nixpkgs.config.allowUnfree = true;
+
+  # SET DEFAULT BOOT LOADER
   boot.loader = {    
     grub = {
       enable = true;
@@ -35,6 +42,7 @@ in {
     efi.efiSysMountPoint = "/boot";
   };
   
+
   networking.hostName = "dino-flash"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -91,8 +99,8 @@ in {
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget helix vscodium
     nodejs python310
-    firefox chromium
-    git
+    firefox git
+    google-chrome
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
