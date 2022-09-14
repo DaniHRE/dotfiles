@@ -24,7 +24,6 @@ in {
       home.packages = with pkgs; [ cbonsai tree ];
 
       # ZSH
-
       programs.zsh = {
         enable = true;
         enableCompletion = true;
@@ -41,7 +40,7 @@ in {
           }
           {
             name = "powerlevel10k-config";
-            src = ./config;
+            src = ./config/term;
             file = "p10k.zsh";
           }
         ];
@@ -161,6 +160,19 @@ in {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  #
+  # XSERVER CONFIGS
+  #
+  services.xserver = {
+    enable = true;
+    windowManager = {
+      xmonad = {
+        enable = true;
+      };
+    };
+    desktopManager.plasma5.enable = true;
+    displayManager.sddm.enable = true;
+  }
   # Configure keymap in X11
   services.xserver.layout = "br";
   #services.xserver.xkbOptions = {
@@ -168,17 +180,17 @@ in {
   #  "caps:escape" #map caps to escape.
   #};
   
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.displayManager.sddm.enable = true;  
+  # services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;  
   # Enable CUPS to print documents.
   # services.printing.enable = true;
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.xserver.libinput.enable = true;
 
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dino = {
