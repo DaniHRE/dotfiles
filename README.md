@@ -25,5 +25,5 @@ Special thanks to @abehidek ❤️.
 
 ## Roadmap (Secondary Goals)
 
-- [] Lazygit
-- [] Ranger
+- [ ] Lazygit
+- [ ] Ranger
