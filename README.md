@@ -9,11 +9,13 @@ This repository was created with the intention of storing my systems configurati
 All content that is here can be used by anyone.
 Special thanks to @abehidek ❤️.
 
-## Roadmap
+## Roadmap (Main Goals)
 
 - [x] Initial config
 - [x] Browsers
 - [x] VSCodium
+- [X] Kitty Term
+- [x] ZSH / P10k
 - [ ] Dev Env
 - [ ] Hypr twm rice
 - [ ] Rofi rice
@@ -21,3 +23,7 @@ Special thanks to @abehidek ❤️.
 - [ ] Refactor dotfiles
 - [ ] Widgets and bar rice
 
+## Roadmap (Secondary Goals)
+
+- [] Lazygit
+- [] Ranger

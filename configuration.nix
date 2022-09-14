@@ -13,11 +13,39 @@ in {
       ./hardware-configuration.nix
       (import "${home-manager}/nixos")
     ];
+  
+  #
+  programs.zsh.enable = true;
+  environment.shells = with pkgs; [ zsh ];
+  users.users.dino.shell = pkgs.zsh;
 
   # HOME MANAGER CONFIG
   home-manager.users.dino = {
-      /* Here goes your home-manager config, eg home.packages = [ pkgs.foo ]; */
       home.packages = with pkgs; [ cbonsai tree ];
+
+      # ZSH
+
+      programs.zsh = {
+        enable = true;
+        enableCompletion = true;
+        enableSyntaxHighlighting = true;
+        history = {
+          size = 5000;
+          path = "$HOME/.local/share/zsh/history";
+        };
+        plugins = [
+          {
+            name = "powerlevel10k";
+            src = pkgs.zsh-powerlevel10k;
+            file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+          }
+          {
+            name = "powerlevel10k-config";
+            src = ./config;
+            file = "p10k.zsh";
+          }
+        ];
+      };
 
       # HOME-MANAGER VARIABLES
       home.sessionVariables = {
@@ -28,7 +56,7 @@ in {
       programs.kitty = {
         enable = true;
         settings = {
-          font_size = "16.0";
+          font_size = "14.0";
           font_family      = "FiraCode Nerd Font";
           bold_font        = "auto";
           italic_font      = "auto";
@@ -65,6 +93,32 @@ in {
         userName  = "Daniel Henrique";
         userEmail = "henriqueevaldo@outlook.com";
       };
+  };
+
+  # FONTS
+
+    fonts = {
+    fonts = with pkgs; [
+      # Regular fonts
+      (nerdfonts.override {
+        fonts = [ "FiraCode" "DroidSansMono" "FiraMono" ];
+      })
+      dejavu_fonts
+      font-awesome
+
+      # Japanese fonts
+      rictydiminished-with-firacode
+      hanazono
+      ipafont
+      kochi-substitute
+    ];
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "DejaVu Sans Mono" "IPAGothic" ];
+        sansSerif = [ "DejaVu Sans" "IPAPGothic" ];
+        serif = [ "DejaVu Serif" "IPAPMincho" ];
+      };
+    };
   };
 
   # ALLOW SOFTWARE WITH UNFREE LICENSE
