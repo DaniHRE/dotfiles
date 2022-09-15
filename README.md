@@ -17,7 +17,7 @@ Special thanks to @abehidek ❤️.
 - [X] Kitty Term
 - [x] ZSH / P10k
 - [ ] Dev Env
-- [ ] Hypr twm rice
+- [ ] XMonad twm rice
 - [ ] Rofi rice
 - [ ] Display manager rice
 - [ ] Refactor dotfiles
