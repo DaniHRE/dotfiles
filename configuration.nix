@@ -94,30 +94,29 @@ in {
       };
   };
 
-  # FONTS
-
+    # FONTS
     fonts = {
-    fonts = with pkgs; [
-      # Regular fonts
-      (nerdfonts.override {
-        fonts = [ "FiraCode" "DroidSansMono" "FiraMono" ];
-      })
-      dejavu_fonts
-      font-awesome
+      fonts = with pkgs; [
+        # Regular fonts
+        (nerdfonts.override {
+          fonts = [ "FiraCode" "DroidSansMono" "FiraMono" ];
+        })
+        dejavu_fonts
+        font-awesome
 
-      # Japanese fonts
-      rictydiminished-with-firacode
-      hanazono
-      ipafont
-      kochi-substitute
-    ];
-    fontconfig = {
-      defaultFonts = {
-        monospace = [ "DejaVu Sans Mono" "IPAGothic" ];
-        sansSerif = [ "DejaVu Sans" "IPAPGothic" ];
-        serif = [ "DejaVu Serif" "IPAPMincho" ];
+        # Japanese fonts
+        rictydiminished-with-firacode
+        hanazono
+        ipafont
+        kochi-substitute
+      ];
+      fontconfig = {
+        defaultFonts = {
+          monospace = [ "DejaVu Sans Mono" "IPAGothic" ];
+          sansSerif = [ "DejaVu Sans" "IPAPGothic" ];
+          serif = [ "DejaVu Serif" "IPAPMincho" ];
+        };
       };
-    };
   };
 
   # ALLOW SOFTWARE WITH UNFREE LICENSE
@@ -160,19 +159,6 @@ in {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  #
-  # XSERVER CONFIGS
-  #
-  services.xserver = {
-    enable = true;
-    windowManager = {
-      xmonad = {
-        enable = true;
-      };
-    };
-    desktopManager.plasma5.enable = true;
-    displayManager.sddm.enable = true;
-  }
   # Configure keymap in X11
   services.xserver.layout = "br";
   #services.xserver.xkbOptions = {
@@ -180,17 +166,33 @@ in {
   #  "caps:escape" #map caps to escape.
   #};
   
-  # services.xserver.desktopManager.plasma5.enable = true;
-  # services.xserver.displayManager.sddm.enable = true;  
+  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager = {
+    sddm.enable = true;
+    defaultSession = "none+xmonad";
+  };
+
+  services.xserver.windowManager.xmonad = {
+    enable = true;
+    enableContribAndExtras = true;
+    extraPackages = haskellPackages: [
+      haskellPackages.dbus
+      haskellPackages.List
+      haskellPackages.monad-logger
+      haskellPackages.xmonad
+    ];
+    #   config = pkgs.lib.readFile ./config/xmonad/config.hs;
+  };
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
 
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dino = {
@@ -198,6 +200,9 @@ in {
       extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
       initialPassword = "password";
   };
+
+  # DISCORD AUTO UPDATE (CHANGE TARBAL LINK .TAR.GZ)
+  nixpkgs.overlays = [(self: super: { discord = super.discord.overrideAttrs (_: { src = builtins.fetchTarball https://dl.discordapp.net/apps/linux/0.0.19/discord-0.0.19.tar.gz; });})];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -207,6 +212,7 @@ in {
     nodejs python310
     firefox git
     google-chrome
+    discord
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -242,4 +248,3 @@ in {
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
-
