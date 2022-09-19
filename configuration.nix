@@ -14,7 +14,7 @@ in {
       (import "${home-manager}/nixos")
     ];
   
-  #
+  # DEFINE ZSH TO ENABLE TO USER
   programs.zsh.enable = true;
   environment.shells = with pkgs; [ zsh ];
   users.users.dino.shell = pkgs.zsh;
@@ -213,6 +213,7 @@ in {
     firefox git
     google-chrome
     discord
+    lazygit
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
