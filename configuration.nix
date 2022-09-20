@@ -215,6 +215,7 @@ in {
     discord
     lazygit
     python310Packages.pip
+    python39Packages.virtualenv
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
