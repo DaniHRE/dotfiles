@@ -214,6 +214,7 @@ in {
     google-chrome
     discord
     lazygit
+    python310Packages.pip
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
