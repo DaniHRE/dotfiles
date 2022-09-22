@@ -9,8 +9,14 @@ let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
 in {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      # Window manager
+      ./wm/xmonad.nix
+
+      # Import Home-Manager
       (import "${home-manager}/nixos")
     ];
   
@@ -169,20 +175,20 @@ in {
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.displayManager = {
     sddm.enable = true;
-    defaultSession = "none+xmonad";
+    # defaultSession = "none+xmonad";
   };
 
-  services.xserver.windowManager.xmonad = {
-    enable = true;
-    enableContribAndExtras = true;
-    extraPackages = haskellPackages: [
-      haskellPackages.dbus
-      haskellPackages.List
-      haskellPackages.monad-logger
-      haskellPackages.xmonad
-    ];
-    #   config = pkgs.lib.readFile ./config/xmonad/config.hs;
-  };
+  # services.xserver.windowManager.xmonad = {
+  #   enable = true;
+  #   enableContribAndExtras = true;
+  #   extraPackages = haskellPackages: [
+  #     haskellPackages.dbus
+  #     haskellPackages.List
+  #     haskellPackages.monad-logger
+  #     haskellPackages.xmonad
+  #   ];
+  #   config = pkgs.lib.readFile ./config/xmonad/config.hs;
+  # };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
