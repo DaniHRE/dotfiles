@@ -4,20 +4,14 @@
 
 { config, pkgs, lib, ... }:
 
-# SET HOME-MANAGER REPOSITORY TO INSTAL
-let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
-in {
-  imports =
-    [ 
+{
+  imports = [ 
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-
+      # User config
+      ./home.nix
       # Window manager
       ./wm/xmonad.nix
-
-      # Import Home-Manager
-      (import "${home-manager}/nixos")
     ];
   
   # DEFINE ZSH TO ENABLE TO USER
@@ -25,104 +19,29 @@ in {
   environment.shells = with pkgs; [ zsh ];
   users.users.dino.shell = pkgs.zsh;
 
-  # HOME MANAGER CONFIG
-  home-manager.users.dino = {
-      home.packages = with pkgs; [ cbonsai tree ];
+  # FONTS
+  fonts = {
+    fonts = with pkgs; [
+      # Regular fonts
+      (nerdfonts.override {
+        fonts = [ "FiraCode" "DroidSansMono" "FiraMono" ];
+      })
+      dejavu_fonts
+      font-awesome
 
-      # ZSH
-      programs.zsh = {
-        enable = true;
-        enableCompletion = true;
-        enableSyntaxHighlighting = true;
-        history = {
-          size = 5000;
-          path = "$HOME/.local/share/zsh/history";
-        };
-        plugins = [
-          {
-            name = "powerlevel10k";
-            src = pkgs.zsh-powerlevel10k;
-            file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-          }
-          {
-            name = "powerlevel10k-config";
-            src = ./config/term;
-            file = "p10k.zsh";
-          }
-        ];
+      # Japanese fonts
+      rictydiminished-with-firacode
+      hanazono
+      ipafont
+      kochi-substitute
+    ];
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "DejaVu Sans Mono" "IPAGothic" ];
+        sansSerif = [ "DejaVu Sans" "IPAPGothic" ];
+        serif = [ "DejaVu Serif" "IPAPMincho" ];
       };
-
-      # HOME-MANAGER VARIABLES
-      home.sessionVariables = {
-        TERMINAL="kitty";
-      };
-
-      # KITTY TERMINAL CONFIG
-      programs.kitty = {
-        enable = true;
-        settings = {
-          font_size = "14.0";
-          font_family      = "FiraCode Nerd Font";
-          bold_font        = "auto";
-          italic_font      = "auto";
-          bold_italic_font = "auto";
-          background = "#001e26";
-          foreground = "#708183";
-          selection_foreground ="#93a1a1";
-          selection_background = "#002b36";
-          cursor = "#708183";
-
-          color0  = "#002731";
-          color1  = "#d01b24";
-          color2  = "#728905";
-          color3  = "#a57705";
-          color4  = "#2075c7";
-          color5  = "#c61b6e";
-          color6  = "#259185";
-          color7  = "#e9e2cb";
-          color8  = "#001e26";
-          color9  = "#bd3612";
-          color10 = "#465a61";
-          color11 = "#52676f";
-          color12 = "#708183";
-          color13 = "#5856b9";
-          color14 = "#81908f";
-          color15 = "#fcf4dc";
-
-        };
-      };
-
-      # GIT CONFIG
-      programs.git = {
-        enable = true;
-        userName  = "Daniel Henrique";
-        userEmail = "henriqueevaldo@outlook.com";
-      };
-  };
-
-    # FONTS
-    fonts = {
-      fonts = with pkgs; [
-        # Regular fonts
-        (nerdfonts.override {
-          fonts = [ "FiraCode" "DroidSansMono" "FiraMono" ];
-        })
-        dejavu_fonts
-        font-awesome
-
-        # Japanese fonts
-        rictydiminished-with-firacode
-        hanazono
-        ipafont
-        kochi-substitute
-      ];
-      fontconfig = {
-        defaultFonts = {
-          monospace = [ "DejaVu Sans Mono" "IPAGothic" ];
-          sansSerif = [ "DejaVu Sans" "IPAPGothic" ];
-          serif = [ "DejaVu Serif" "IPAPMincho" ];
-        };
-      };
+    };
   };
 
   # ALLOW SOFTWARE WITH UNFREE LICENSE
@@ -163,10 +82,10 @@ in {
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Configure keymap in X11
-  services.xserver.layout = "br";
+  # services.xserver.layout = "br";
   #services.xserver.xkbOptions = {
   #  "eurosign:e";
   #  "caps:escape" #map caps to escape.
