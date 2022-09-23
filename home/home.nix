@@ -3,13 +3,14 @@
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
 in {
-  
+
   imports = [(import "${home-manager}/nixos")]; 
 
   # HOME MANAGER CONFIG
   home-manager.users.dino = {
       home.packages = with pkgs; [ cbonsai tree ];
 
+      # IMPORT ALL PROGRAMS INSIDE FOLDER
       imports = (import ./programs);
 
       # ZSH
