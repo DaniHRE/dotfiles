@@ -7,6 +7,9 @@ in {
     [ 
       # Import Home-Manager
       (import "${home-manager}/nixos")
+
+      # Import All Programs
+      (import ./programs)
     ];
 
   # HOME MANAGER CONFIG
