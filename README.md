@@ -19,6 +19,7 @@ Special thanks to @abehidek ❤️.
 - [ ] Dev Env
 - [ ] XMonad twm rice
 - [ ] Rofi rice
+- [ ] Polybar rice
 - [ ] Display manager rice
 - [ ] Refactor dotfiles
 - [ ] Widgets and bar rice
@@ -26,5 +27,5 @@ Special thanks to @abehidek ❤️.
 ## Roadmap (Secondary Goals)
 
 - [X] Discord
-- [ ] Lazygit
+- [X] Lazygit
 - [ ] Ranger
