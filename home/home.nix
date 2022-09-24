@@ -11,7 +11,7 @@ in {
       home.packages = with pkgs; [ cbonsai tree ];
 
       # IMPORT ALL PROGRAMS INSIDE FOLDER
-      imports = (import ./programs);
+      imports = (import ./programs) ++ (import ./services);
 
       # ZSH
       programs.zsh = {
