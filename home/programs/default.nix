@@ -1,3 +1,4 @@
 [
+  ./nix-direnv
   ./rofi
 ]

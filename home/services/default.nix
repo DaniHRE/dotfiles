@@ -1,3 +1,3 @@
 [
-  ./polybar
+  #./polybar
 ]
