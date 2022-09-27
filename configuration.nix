@@ -139,6 +139,7 @@
     google-chrome
     discord
     lazygit
+    direnv
     python310Packages.pip
     python39Packages.virtualenv
   ];
