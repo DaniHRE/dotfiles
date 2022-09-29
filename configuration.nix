@@ -140,6 +140,8 @@
     discord
     lazygit
     direnv
+    playerctl
+    ghc
     python310Packages.pip
     python39Packages.virtualenv
   ];
