@@ -2,7 +2,12 @@
   xsession = {
     enable = true;
 
-    initExtra = polybarOpts;
+    initExtra = ''
+      nitrogen --restore &
+      pasystray &
+      blueman-applet &
+      nm-applet --sm-disable --indicator &
+    '';
 
     windowManager.xmonad = {
       enable = true;
