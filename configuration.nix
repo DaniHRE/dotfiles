@@ -142,6 +142,7 @@
     direnv
     playerctl
     ghc
+    betterlockscreen
     python310Packages.pip
     python39Packages.virtualenv
   ];

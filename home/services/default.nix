@@ -1,4 +1,5 @@
 [
+  ./betterlockscreen
   ./dunst
   ./polybar
 ]
