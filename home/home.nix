@@ -4,12 +4,23 @@ let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
 
   defaultPkgs = with pkgs; [
-    firefox
-    google-chrome
-    discord
-    lazygit
-    cbonsai
-    tree
+    firefox # Firefox Web Browser.
+    google-chrome # Google-Chrome Web Browser.
+    discord # Discord Client.
+    lazygit # Command-Line Git interface.
+    cbonsai # Simple Bonsai Tree Grow.
+    tree # Simple Directory tree command.
+    pasystray # Pulseaudio systray.
+  ];
+
+  xmonadPkgs = with pkgs; [
+    networkmanager_dmenu # Networkmanager on dmenu.
+    networkmanagerapplet # Networkmanager applet.
+    nitrogen # Wallpaper manager.
+    xcape # Keymaps modifier.
+    xorg.xkbcomp # Keymaps modifier.
+    xorg.xmodmap # Keymaps modifier.
+    xorg.xrandr # X Resize and Rotate protocol.
   ];
 
 in {
@@ -18,7 +29,7 @@ in {
 
   # HOME MANAGER CONFIG
   home-manager.users.dino = {
-      home.packages = defaultPkgs;
+      home.packages = defaultPkgs ++ xmonadPkgs;
 
       # IMPORT ALL PROGRAMS INSIDE FOLDER
       imports = (import ./programs) ++ (import ./services);
