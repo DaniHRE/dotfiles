@@ -101,19 +101,18 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    helix
-    vscodium
-    nodejs
-    python310
-    playerctl
-    direnv
-    ghc
-    git
-    betterlockscreen
-    python310Packages.pip
-    python39Packages.virtualenv
+    wget # Download Internet Data by HTTPS, HTTPS or FTP Protocol.
+    git # Open source version control system.
+    helix # Advanced Terminal Text Editor.
+    vscodium # Advanced Text editor.
+    nodejs # Latest LTS NodeJS version.
+    python310 # Python 3.10.
+    playerctl # Command-Line Utility and Library for controlling media players.
+    direnv # Create Dynamic Development Environment using Nix.
+    ghc # A Glasgow Haskell Compiler.
+    betterlockscreen # Better Clean and Stable Lock Screen.
+    python310Packages.pip # Python Package Instaler.
+    python39Packages.virtualenv # Python Virtual Environment Instaler.
  ];
 
   # Some programs need SUID wrappers, can be configured further or are
