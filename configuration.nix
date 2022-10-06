@@ -79,7 +79,6 @@
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.displayManager = {
     sddm.enable = true;
-    # defaultSession = "none+xmonad";
   };
 
   # Enable sound.
@@ -115,7 +114,7 @@
     betterlockscreen
     python310Packages.pip
     python39Packages.virtualenv
-  ];
+ ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

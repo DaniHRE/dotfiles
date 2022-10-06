@@ -13,12 +13,12 @@ let
   ];
 
 in {
-  
+
   imports = [(import "${home-manager}/nixos")]; 
 
   # HOME MANAGER CONFIG
   home-manager.users.dino = {
-      packages = defaultPkgs;
+      home.packages = defaultPkgs;
 
       # IMPORT ALL PROGRAMS INSIDE FOLDER
       imports = (import ./programs) ++ (import ./services);
