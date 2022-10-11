@@ -1,5 +1,5 @@
 [
-  ./picom
+  # ./picom
   ./betterlockscreen
   ./dunst
   ./polybar
