@@ -13,6 +13,16 @@ let
     pasystray # Pulseaudio systray.
   ];
 
+  haskellPkgs = with pkgs.haskellPackages; [
+    brittany # code formatter
+    cabal2nix # convert cabal projects to nix
+    cabal-install # package manager
+    ghc # compiler
+    haskell-language-server # haskell IDE (ships with ghcide)
+    hoogle # documentation
+    nix-tree # visualize nix dependencies
+  ];
+
   xmonadPkgs = with pkgs; [
     networkmanager_dmenu # Networkmanager on dmenu.
     networkmanagerapplet # Networkmanager applet.
