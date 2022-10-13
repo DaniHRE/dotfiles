@@ -11,6 +11,7 @@ let
     cbonsai # Simple Bonsai Tree Grow.
     tree # Simple Directory tree command.
     pasystray # Pulseaudio systray.
+    blueman # Bluetooth Manager
   ];
 
   haskellPkgs = with pkgs.haskellPackages; [
@@ -40,6 +41,9 @@ in {
   # HOME MANAGER CONFIG
   home-manager.users.dino = {
       home.packages = defaultPkgs ++ xmonadPkgs;
+  
+      # Blueman Bluetooth Manager Config
+      services.blueman-applet.enable = true;
 
       # IMPORT ALL PROGRAMS INSIDE FOLDER
       imports = (import ./programs) ++ (import ./services);
