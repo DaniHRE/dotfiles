@@ -41,9 +41,6 @@ in {
   # HOME MANAGER CONFIG
   home-manager.users.dino = {
       home.packages = defaultPkgs ++ xmonadPkgs;
-  
-      # Blueman Bluetooth Manager Config
-      services.blueman-applet.enable = true;
 
       # IMPORT ALL PROGRAMS INSIDE FOLDER
       imports = (import ./programs) ++ (import ./services);
