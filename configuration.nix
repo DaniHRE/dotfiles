@@ -84,6 +84,19 @@
   # Enable sound.
   sound.enable = true;
 
+    # Pulseaudio Config
+  hardware.pulseaudio = {
+    enable = true;
+    # extraModules = [ pkgs.pulseaudio-modules-bt ];
+    package = pkgs.pulseaudioFull;
+  };
+
+  # Enable Bluetooth Support
+  hardware.bluetooth.enable = true;
+
+  # Enable Blueman Service
+  services.blueman.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
 
