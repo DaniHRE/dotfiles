@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
+  programs.dconf.enable = true;
+
   services = {
     gnome.gnome-keyring.enable = true;
     upower.enable = true;
@@ -14,12 +16,19 @@
       enable = true;
       layout = "br";
 
-      libinput = {
-        enable = true;
-        touchpad = {
-            disableWhileTyping = true;
-          };
-      };
+      # Enable Touchpad Support in Xmonad Environment
+      # libinput = {
+      #   enable = true;
+      #   touchpad = {
+      #       disableWhileTyping = true;
+      #     };
+      # };
+
+      serverLayoutSection = ''
+        Option "StandbyTime" "0"
+        Option "SuspendTime" "0"
+        Option "OffTime"     "0"
+      '';
 
       displayManager.defaultSession = "none+xmonad";
 
