@@ -32,15 +32,16 @@
     };
   };
 
-  # Pulseaudio Config
-  hardware.pulseaudio = {
-    enable = true;
-    # extraModules = [ pkgs.pulseaudio-modules-bt ];
-    package = pkgs.pulseaudioFull;
-  };
-
   # Enable Bluetooth Support
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    hsphfpd.enable = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+      };
+    };
+  };
 
   # Enable Blueman Service
   services.blueman.enable = true;
