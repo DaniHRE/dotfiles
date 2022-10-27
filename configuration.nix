@@ -84,7 +84,7 @@
   # Enable sound.
   sound.enable = true;
 
-    # Pulseaudio Config
+  # Pulseaudio Config
   hardware.pulseaudio = {
     enable = true;
     # extraModules = [ pkgs.pulseaudio-modules-bt ];
@@ -114,9 +114,14 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget # Download Internet Data by HTTPS, HTTPS or FTP Protocol.
+    calc # C-Style Calculator
+    pywal # Generate and change colorschemes on the fly.
     git # Open source version control system.
     helix # Advanced Terminal Text Editor.
     vscodium # Advanced Text editor.
+    papirus-icon-theme # Papirus Icon Theme
+    terminus-nerdfont # Terminus Nerd Font Pack
+    iosevka # Iosevka Font
     nodejs # Latest LTS NodeJS version.
     python310 # Python 3.10.
     playerctl # Command-Line Utility and Library for controlling media players.
