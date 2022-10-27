@@ -17,11 +17,12 @@ let
   haskellPkgs = with pkgs.haskellPackages; [
     brittany # code formatter
     cabal2nix # convert cabal projects to nix
+    nix-tree # visualize nix dependencies
     cabal-install # package manager
-    ghc # compiler
     haskell-language-server # haskell IDE (ships with ghcide)
     hoogle # documentation
-    nix-tree # visualize nix dependencies
+    stack # The Haskell Tool Stack
+    ghc # compiler
   ];
 
   xmonadPkgs = with pkgs; [
