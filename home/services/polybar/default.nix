@@ -9,12 +9,10 @@ let
   };
 
   # theme adapted from: https://github.com/adi1090x/polybar-themes#-polybar-5
-  bars = builtins.readFile ../../../config/polybar/bars.ini;
-  colors = builtins.readFile ../../../config/polybar/colors.ini;
-  mods1 = builtins.readFile ../../../config/polybar/modules.ini;
-  mods2 = builtins.readFile ../../../config/polybar/user_modules.ini;
-
-
+  bars = builtins.readFile ./bars.ini;
+  colors = builtins.readFile ./colors.ini;
+  mods1 = builtins.readFile ./modules.ini;
+  mods2 = builtins.readFile ./user_modules.ini;
 
   playerctl = ''
     [module/playerctl]
@@ -37,7 +35,7 @@ in
   services.polybar = {
     enable = true;
     package = mypolybar;
-    config = ../../../config/polybar/config.ini;
+    config = ./config.ini;
     extraConfig = bars + colors + mods1 + mods2 + playerctl + xmonad;
     script = ''
       polybar
