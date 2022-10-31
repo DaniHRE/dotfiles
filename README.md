@@ -15,11 +15,12 @@ Special thanks to @abehidek ❤️.
 - [x] Browsers
 - [x] VSCodium
 - [X] Kitty Term
+- [X] Hyper Term
 - [x] ZSH / P10k
 - [ ] Dev Env
 - [ ] XMonad twm rice
-- [ ] Rofi rice
-- [ ] Polybar rice
+- [ ] Rofi rice | Testing Resources
+- [ ] Polybar rice | Testing Resources
 - [ ] Display manager rice
 - [ ] Refactor dotfiles
 - [ ] Widgets and bar rice
