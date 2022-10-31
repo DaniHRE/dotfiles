@@ -123,7 +123,9 @@
     terminus-nerdfont # Terminus Nerd Font Pack
     iosevka # Iosevka Font
     nodejs # Latest LTS NodeJS version.
+    yarn # Dependency manager for javascript
     python310 # Python 3.10.
+    hyper # Hyper Terminal Emulator
     playerctl # Command-Line Utility and Library for controlling media players.
     direnv # Create Dynamic Development Environment using Nix.
     ghc # A Glasgow Haskell Compiler.
