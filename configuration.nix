@@ -132,6 +132,7 @@
     betterlockscreen # Better Clean and Stable Lock Screen.
     python310Packages.pip # Python Package Instaler.
     python39Packages.virtualenv # Python Virtual Environment Instaler.
+    pkgs.nodePackages_latest.pnpm # Alternative Node Package Manager
  ];
 
   # Some programs need SUID wrappers, can be configured further or are
