@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
 
   defaultPkgs = with pkgs; [
     firefox # Firefox Web Browser.
@@ -14,34 +14,15 @@ let
     blueman # Bluetooth Manager
   ];
 
-  haskellPkgs = with pkgs.haskellPackages; [
-    brittany # code formatter
-    cabal2nix # convert cabal projects to nix
-    nix-tree # visualize nix dependencies
-    cabal-install # package manager
-    haskell-language-server # haskell IDE (ships with ghcide)
-    hoogle # documentation
-    stack # The Haskell Tool Stack
-    ghc # compiler
-  ];
-
-  xmonadPkgs = with pkgs; [
-    networkmanager_dmenu # Networkmanager on dmenu.
-    networkmanagerapplet # Networkmanager applet.
-    nitrogen # Wallpaper manager.
-    xcape # Keymaps modifier.
-    xorg.xkbcomp # Keymaps modifier.
-    xorg.xmodmap # Keymaps modifier.
-    xorg.xrandr # X Resize and Rotate protocol.
-  ];
-
 in {
 
   imports = [(import "${home-manager}/nixos")]; 
 
   # HOME MANAGER CONFIG
   home-manager.users.dino = {
-      home.packages = defaultPkgs ++ xmonadPkgs;
+      home.stateVersion = "24.05";
+
+      home.packages = defaultPkgs;
 
       # IMPORT ALL PROGRAMS INSIDE FOLDER
       imports = (import ./programs) ++ (import ./services);

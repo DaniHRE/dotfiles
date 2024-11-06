@@ -10,8 +10,6 @@
       ./hardware-configuration.nix
       # User config
       ./home/home.nix
-      # Window manager
-      ./system/wm/xmonad.nix
     ];
   
   # DEFINE ZSH TO ENABLE TO USER
@@ -47,25 +45,19 @@
   # ALLOW SOFTWARE WITH UNFREE LICENSE
   nixpkgs.config.allowUnfree = true;
 
-  # SET DEFAULT BOOT LOADER
-  boot.loader = {    
-    grub = {
-      enable = true;
-      version = 2;
-      efiSupport = true;
-      efiInstallAsRemovable = true;
-      device = "nodev";
-    };
-    efi.efiSysMountPoint = "/boot";
-  };
-  
-  networking.hostName = "dino-flash"; # Define your hostname.
+    
+  networking.hostName = "dino-nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
+
+  # Bootloader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -76,23 +68,20 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   };
   
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.displayManager = {
-    sddm.enable = true;
-  };
+  services.xserver = {
+  	enable = true;
+  	displayManager.gdm.enable = true;
+  	desktopManager.gnome.enable = true;
+  };  
 
-  # Enable sound.
+  # Enable Audio
   sound.enable = true;
 
   # Pulseaudio Config
   hardware.pulseaudio = {
     enable = true;
-    # extraModules = [ pkgs.pulseaudio-modules-bt ];
     package = pkgs.pulseaudioFull;
   };
-
-  # Enable Bluetooth Support
-  hardware.bluetooth.enable = true;
 
   # Enable Blueman Service
   services.blueman.enable = true;
@@ -117,7 +106,6 @@
     calc # C-Style Calculator
     pywal # Generate and change colorschemes on the fly.
     git # Open source version control system.
-    helix # Advanced Terminal Text Editor.
     vscodium # Advanced Text editor.
     papirus-icon-theme # Papirus Icon Theme
     terminus-nerdfont # Terminus Nerd Font Pack
@@ -128,7 +116,6 @@
     hyper # Hyper Terminal Emulator
     playerctl # Command-Line Utility and Library for controlling media players.
     direnv # Create Dynamic Development Environment using Nix.
-    ghc # A Glasgow Haskell Compiler.
     betterlockscreen # Better Clean and Stable Lock Screen.
     python310Packages.pip # Python Package Instaler.
     python39Packages.virtualenv # Python Virtual Environment Instaler.
@@ -139,16 +126,11 @@
   # started in user sessions.
   programs.mtr.enable = true;
   programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+    enable = true; 
   };
 
   # List services that you want to enable:
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-
-  system.stateVersion = "22.05"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 
 }
