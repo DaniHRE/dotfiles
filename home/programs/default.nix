@@ -1,5 +1,4 @@
 [
   # ./xmonad
   ./nix-direnv
-  ./rofi
 ]
